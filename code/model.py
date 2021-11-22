@@ -22,7 +22,7 @@ class inner_GNN(MessagePassing):
         self.lin1 = nn.Linear(dim, hidden_layer)
         self.lin2 = nn.Linear(hidden_layer, dim)
         self.act = nn.ReLU()
-        self.drop = nn.Dropout(p=0.3)
+        self.drop = nn.Dropout(p=0.5)
 
     def forward(self, x, edge_index, edge_weight=None):
         # x has shape [N, dim]
@@ -34,7 +34,7 @@ class inner_GNN(MessagePassing):
         # x_j has shape [E, dim]
 
         # pairwise analysis
-        pairwise_analysis = x_i + x_j
+        pairwise_analysis = x_i * x_j
         pairwise_analysis = self.lin1(pairwise_analysis)
         pairwise_analysis = self.act(pairwise_analysis)
         pairwise_analysis = self.lin2(pairwise_analysis)
@@ -55,7 +55,7 @@ class inner_GNN(MessagePassing):
 
 class cross_GNN(MessagePassing):
     def __init__(self, dim, hidden_layer):
-        super(cross_GNN, self).__init__(aggr='add')
+        super(cross_GNN, self).__init__(aggr='mean')
 
     def forward(self, x, edge_index, edge_weight=None):
         # x has shape [N, dim]
@@ -99,7 +99,7 @@ class GMCF(nn.Module):
         self.num_user_features = args.num_user_features
 
         self.feature_embedding = nn.Embedding(self.n_features + 1, self.dim)
-        #self.feature_embedding.weight.data.normal_(0.0,0.01)
+        self.feature_embedding.weight.data.normal_(0.0,0.01)
         self.inner_gnn = inner_GNN(self.dim, self.hidden_layer)
         self.outer_gnn = cross_GNN(self.dim, self.hidden_layer)
 
