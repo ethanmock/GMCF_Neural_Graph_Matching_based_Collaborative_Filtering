@@ -99,7 +99,7 @@ class GMCF(nn.Module):
         self.num_user_features = args.num_user_features
 
         self.feature_embedding = nn.Embedding(self.n_features + 1, self.dim)
-        self.feature_embedding.weight.data.normal_(0.0,0.01)
+        #self.feature_embedding.weight.data.normal_(0.0,0.01)
         self.inner_gnn = inner_GNN(self.dim, self.hidden_layer)
         self.outer_gnn = cross_GNN(self.dim, self.hidden_layer)
 

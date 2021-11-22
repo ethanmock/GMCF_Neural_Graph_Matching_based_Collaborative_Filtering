@@ -27,7 +27,7 @@ args = parser.parse_args()
 sep = ','
 
 #dataset = Dataset_larger('../data/', args.dataset, args.rating_file, sep, 10)
-dataset = Dataset('../data/', args.dataset, args.rating_file, sep)
+dataset = Dataset('../data/', args.dataset, args.rating_file, sep, args)
 
 data_num = dataset.data_N()
 feature_num = dataset.feature_N()
