@@ -146,8 +146,8 @@ class Dataset(InMemoryDataset):
         outer_edge_index = [[],[]]
         for i in range(u_n):
             for j in range(i_n):
-                outer_edge_index[0].append(i)
-                outer_edge_index[1].append(u_n + j)
+                inner_edge_index[0].append(i)
+                inner_edge_index[1].append(u_n + j)
 
         #construct graph
         inner_edge_index = torch.LongTensor(inner_edge_index)

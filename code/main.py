@@ -11,7 +11,7 @@ import time
 #t
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str, default='book-crossing', help='which dataset to use')
+parser.add_argument('--dataset', type=str, default='ml-1m', help='which dataset to use')
 parser.add_argument('--rating_file', type=str, default='implicit_ratings.csv', help='which dataset to use')
 parser.add_argument('--dim', type=int, default=64, help='dimension of entity and relation embeddings')
 parser.add_argument('--l2_weight', type=float, default=1e-5, help='weight of the l2 regularization term')
@@ -19,7 +19,7 @@ parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
 parser.add_argument('--batch_size', type=int, default=1024, help='batch size')
 parser.add_argument('--n_epoch', type=int, default=50, help='the number of epochs')
 parser.add_argument('--hidden_layer', type=int, default=256, help='neural hidden layer')
-parser.add_argument('--num_user_features', type=int, default=3, help='the number of user attributes')
+parser.add_argument('--num_user_features', type=int, default=4, help='the number of user attributes')
 parser.add_argument('--random_seed', type=int, default=2019, help='size of common item be counted')
 #random.choice(range(2000))
 args = parser.parse_args()
